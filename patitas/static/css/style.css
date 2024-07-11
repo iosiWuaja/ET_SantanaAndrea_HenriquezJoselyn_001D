@@ -63,6 +63,49 @@ header .user-shop a:hover{
     color: #811a39;
 }
 
+.navbar-header{
+    display: flex;
+    align-items: center;
+}
+
+.usuario-nav {
+    list-style: none;
+    padding: 0;
+    margin-left: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.usuario-nav li {
+    position: relative;
+}
+
+.usuario-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #d5294d;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 150px;
+    padding: 0.5rem 0;
+}
+
+.usuario-nav li:hover .dropdown-menu {
+    display: block;
+}
+
+.usuario-nav li:hover .dropdown-menu .dropdown-item{
+    color: #fdfdf9;
+}
+.usuario-nav li:hover .dropdown-menu .dropdown-item:hover{
+    background-color: #d5294d;
+    color: #811a39;
+}
+
+
 .cont-header header .carrito-compras{
     position: relative;
     text-align: right;

@@ -1,0 +1,16 @@
+{% extends "patitas/index.html" %}
+{% load static %}
+
+{% block title %} Productos {% endblock %}
+
+
+{% block content %}
+  <div class="container">
+    {% if productos %}
+        <br><br>
+        {% for producto in productos %}
+            {{producto}} <br>
+        {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
