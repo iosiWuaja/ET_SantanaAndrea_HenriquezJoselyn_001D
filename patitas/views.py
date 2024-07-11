@@ -1,6 +1,19 @@
 from django.shortcuts import render
 from .models import Producto, Categoria
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def menu(request):
+    request.session["usuario"]="cliente"
+    usuario=request.session["usuario"]
+    context = {'usuario':usuario}
+    return render(request, 'patitas/menu.html', context)
+
+def home(request):
+    context = {}
+    return render(request, 'patitas/index.html', context)
 
 # Create your views here.
 def index(request):

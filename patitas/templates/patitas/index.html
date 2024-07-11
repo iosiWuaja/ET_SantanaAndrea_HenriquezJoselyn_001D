@@ -29,7 +29,19 @@
                 <a href="index">Inicio</a>
                 <a href="contacto">Contacto</a>
                 <a href="#">Nosotros</a>
-                <a href="usuario" class="fas fa-user"></a>
+                <ul>
+                    <li><a href="usuario" class="fas fa-user"></a>
+                        <ul class="dropdown">
+                            <a href="#">
+                                {% if user.is_authenticated %}
+                                    {{user.username}}
+                                {% else %}
+                                    <a href="{% url 'login' %}">Login</a>
+                                {% endif %}
+                            </a>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
 
             <div class="carrito-compras">
@@ -256,6 +268,7 @@
             </div>
         </div>
     </footer>
+    
 
     <!--SCRIPT PARA CONTEO-->
     <script>
