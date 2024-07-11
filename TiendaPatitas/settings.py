@@ -56,7 +56,7 @@ ROOT_URLCONF = 'TiendaPatitas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_REDIRECT_URL="menu"
+LOGOUT_REDIRECT_URL="index"
 
 WSGI_APPLICATION = 'TiendaPatitas.wsgi.application'
 
