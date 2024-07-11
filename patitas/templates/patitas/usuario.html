@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!--ICONOS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--BOOTSTRAP-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!--CSS-->
+    <link type='text/css' href='{% static "css/style.css"%}' rel='stylesheet'/>
+
+    <title>Tienda Patitas</title>
+</head>
+<body>   
+
+    <div class="titulos-pag">
+        <h1>Inicia sesión!</h1>
+    </div>
+
+    <section class="form-inises">
+        <form class="form-iniciar-sesion">
+            <input class="recuadro" type="text" name="usuario" id="usuario" placeholder="Usuario">
+            <input class="recuadro" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+            <input class="boton" type="submit" value="Ingresar" id="ingresar-btn">
+            <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+            <p><a href="registro">Registrarse</a></p>
+        </form>
+    </section>
+
+    <!-- Modal -->
+    <div id="msj-modal" class="msj-modal">
+        <div class="cont-modal">
+            <span class="cerrar">&times;</span>
+            <img src="{% static 'img/sesion-iniciada.jpg'%}" alt="listo">
+            <p>¡Has iniciado sesión!</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+</html>

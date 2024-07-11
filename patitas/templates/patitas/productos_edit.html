@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link type='text/css' href='{% static "css/style.css"%}' rel='stylesheet'/>
+    <title>Modificar producto</title>
+</head>
+<body>
+    <div class="productos-edit">
+        {% if producto %}
+            <div class="titulos-pag">
+                <h2>Formulario para actualizar productos</h2>
+            </div>
+
+            <div id="idMensajes">
+                {% if mensaje %}
+                    <p class="mensaje">{{ mensaje }}</p>
+                {% endif %}
+            </div>
+
+            <form action="{% url 'productosUpdate' %}" method="POST" class="form-crud">
+                {% csrf_token %}
+                
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="{{ producto.id }}" readonly>
+                
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ producto.nombre_prod }}">
+                
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion" value="{{ producto.descripcion }}">
+                
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria">
+                    {% for categoria in categoria %}
+                        <option value="{{ categoria.id_categoria }}" {% if categoria.id_categoria == producto.id_categoria.id_categoria %}selected{% endif %}>
+                            {{ categoria.categoria }}
+                        </option>
+                    {% endfor %}
+                </select>
+                
+                <label for="precio">Precio:</label>
+                <input type="text" id="precio" name="precio" value="{{ producto.precio }}">
+                
+                <label for="stock">Stock:</label>
+                <input type="text" id="stock" name="stock" value="{{ producto.stock }}">
+                
+                <button type="submit" name="opcion" class="btn-agregar">Actualizar</button>
+            </form>
+        {% endif %}
+
+        <a href="{% url 'crud' %}" class="btn-volver">Volver</a>
+    </div>
+</body>
+</html>
