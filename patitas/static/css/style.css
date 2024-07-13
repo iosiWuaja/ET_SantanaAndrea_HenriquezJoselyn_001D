@@ -583,7 +583,8 @@ DESCUENTOS
 /*
 INICIAR SESION
 */
-.form-inises {
+
+.login-form {
     width: 350px; 
     background-color: rgba(240, 184, 218, 0.5); 
     padding: 20px;
@@ -594,7 +595,24 @@ INICIAR SESION
     color: rgb(14, 13, 13); 
 }
 
-.form-inises .recuadro {
+.login-form button {
+    width: 100%;
+    background: #d5294d;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 18px;
+    border-radius: 30px;
+}
+
+.login-form button:hover {
+    background: #811a39;
+    opacity: 0.9;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
     width: 98%; 
     height: 40px; 
     margin-bottom: 25px;
@@ -606,36 +624,21 @@ INICIAR SESION
     border: 0;
 }
 
-.form-iniciar-sesion .boton {
-    width: 100%;
-    background: #d5294d;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 18px;
-    border-radius: 30px;
-}
-
-.form-inises .boton:hover {
-    background: #811a39;
-    opacity: 0.9;
-}
-
-.form-inises p{
+.login-form p{
     text-align: center;
     margin-bottom: 0;
 }
 
-.form-inises a{
+.login-form a{
     color: #811a39;
     font-size: 18px;
 }
 
-.form-inises a:hover{
+.login-form a:hover{
     text-decoration: underline;
     color: #fdfdf9;
 }
+
 
 .msj-modal {
     display: none;

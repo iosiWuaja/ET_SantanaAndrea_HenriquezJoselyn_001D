@@ -24,21 +24,13 @@
         <h1>Inicia sesión!</h1>
     </div>
 
-    <form method="post">
+    <form method="post" class="login-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        <p><a href="registro">Registrarse</a></p>
     </form>
-
-    <section method="post" class="form-inises">
-        <form class="form-iniciar-sesion">
-            <input class="recuadro" type="text" name="usuario" id="usuario" placeholder="Usuario">
-            <input class="recuadro" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
-            <input class="boton" type="submit" value="Ingresar" id="ingresar-btn">
-            <p><a href="#">¿Olvidaste tu contraseña?</a></p>
-            <p><a href="registro">Registrarse</a></p>
-        </form>
-    </section>
 
     <!-- Modal -->
     <div id="msj-modal" class="msj-modal">

@@ -21,7 +21,7 @@ def index(request):
     context={'productos':producto}
     return render(request, 'patitas/index.html', context)
 
-def descuentos(request):
+def descuentos(request): 
     context={}
     return render(request, 'patitas/descuentos.html', context)
 

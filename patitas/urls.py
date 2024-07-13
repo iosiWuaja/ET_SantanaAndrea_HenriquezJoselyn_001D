@@ -19,5 +19,5 @@ urlpatterns = [
     path('productosUpdate', views.productosUpdate, name='productosUpdate'),
 
     path('menu', views.menu, name='menu'),
-   path('index', views.index, name='index'),
+    path('index', views.index, name='index'),
 ]
