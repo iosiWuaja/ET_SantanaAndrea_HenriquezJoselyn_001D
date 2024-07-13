@@ -134,9 +134,11 @@
         <h1>Producto Populares</h1>
     </div>
 
-    <div class="editar-productos">
-        <a href="crud">Editar Productos</a>
-    </div>
+    {% if request.user.is_authenticated and request.user.username == "admin" %}
+        <div class="editar-productos">
+            <a href="crud">Editar Productos</a>
+        </div>
+    {% endif %}
 
         <div class="cont-cards">
             <div class="card-prodct">
