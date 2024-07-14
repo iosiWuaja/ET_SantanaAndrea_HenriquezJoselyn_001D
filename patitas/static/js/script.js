@@ -183,41 +183,4 @@ $(document).ready(function() {
 
 /*CARRITO DE COMPRAS*/
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.añadir-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const producto = {
-                id: this.getAttribute('data-id'),
-                nombre: this.getAttribute('data-nombre'),
-                precio: parseInt(this.getAttribute('data-precio')),
-                cantidad: 1
-            };
 
-            fetch('/api/add-to-cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(producto)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al añadir el producto al carrito');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Producto añadido al carrito:', data);
-                alert('¡Producto añadido al carrito!');
-                
-                let conteoElement = document.getElementById('conteo');
-                let conteoActual = parseInt(conteoElement.innerText);
-                conteoElement.innerText = conteoActual + 1;
-            })
-            .catch(error => {
-                console.error('Error al añadir el producto al carrito:', error);
-                alert('Ocurrió un error al añadir el producto al carrito');
-            });
-        });
-    });
-});

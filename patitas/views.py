@@ -25,9 +25,6 @@ def descuentos(request):
     context={}
     return render(request, 'patitas/descuentos.html', context)
 
-def carrito(request):
-    context={}
-    return render(request, 'patitas/carrito.html', context)
 
 def checkout(request):
       context = {}
@@ -142,3 +139,4 @@ def productosUpdate(request):
         productos = Producto.objects.all()
         context = {'productos':productos}
         return render(request, 'patitas/lista_prod.html', context)
+
