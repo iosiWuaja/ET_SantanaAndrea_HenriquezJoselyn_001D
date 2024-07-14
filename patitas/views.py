@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Producto, Categoria
+from .models import Producto, Categoria, Carrito
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404, redirect
 
 
 @login_required
@@ -139,4 +141,22 @@ def productosUpdate(request):
         productos = Producto.objects.all()
         context = {'productos':productos}
         return render(request, 'patitas/lista_prod.html', context)
+
+@require_POST
+def agregar_al_carrito(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    carrito_item, created = Carrito.objects.get_or_create(usuario=request.user, producto=producto)
+
+    if not created:
+        # Si el producto ya está en el carrito, incrementar la cantidad
+        carrito_item.cantidad += 1
+        carrito_item.save()
+
+    return redirect('carrito')
+
+
+def ver_carrito(request):
+    carrito_items = Carrito.objects.filter(usuario=request.user)
+    total = sum(item.producto.precio * item.cantidad for item in carrito_items)
+    return render(request, 'patitas/carrito.html', {'carrito_items': carrito_items, 'total': total})
 

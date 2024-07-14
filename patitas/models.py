@@ -11,21 +11,24 @@ class Categoria(models.Model):
         return str(self.categoria)
 
 class Producto(models.Model):
-    id = models.CharField(primary_key=True, max_length=50)
+    id = models.AutoField(primary_key=True)
     nombre_prod = models.CharField(max_length=50)
     descripcion = models.TextField(max_length=200)
     id_categoria = models.ForeignKey('Categoria',on_delete=models.CASCADE, db_column='idCategoria')
-    precio = models.CharField(max_length=10)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     imagen = models.ImageField(upload_to='productos_fotos/', blank=True, null=True)
 
     def __str__(self):
-        return str(self.nombre_prod)+" "+str(self.descripcion)  
+        return str(self.nombre_prod)+" "+str(self.descripcion)
 
 class Carrito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.PositiveIntegerField(default=1)
+    cantidad = models.IntegerField(default=1)
+
+    class Meta:
+        unique_together = ('usuario', 'producto')
 
     def __str__(self):
-        return f'{self.cantidad} x {self.producto.nombre}'
+        return f'{self.usuario} - {self.producto} - {self.cantidad}'
