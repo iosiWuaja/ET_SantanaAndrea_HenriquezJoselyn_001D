@@ -239,6 +239,28 @@
         </div>
 
 
+        <div class="cont-cards">
+            {% for x in productos %}
+                <div class="card-prodct">
+                    <img src="{{ x.imagen }}" alt="{{ x.nombre_prod }}">
+                    <p class="descuento">¡50% de descuento!</p>
+                    <div class="info">
+                        <h1>{{ x.nombre_prod }}</h1>
+                        <p>{{ x.descripcion }}</p>
+                        <p class="precio-anterior"><del>$50.000</del></p>
+                        <p class="precio-descuento">${{ x.precio }}</p>
+                        <form action="{% url 'carrito' x.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="añadir-btn">Agregar al Carrito</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+         
+
+
     <!--Pie de pagina-->
     <footer class="sec-pie-pagina">
         <div class="fondo-pie-pag">

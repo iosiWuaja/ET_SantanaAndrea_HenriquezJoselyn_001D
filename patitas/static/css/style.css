@@ -293,18 +293,20 @@ header .user-shop a:hover{
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
 }
 
-.cont-cards{
+.cont-cards {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     padding: 15px 30px 40px 80px;
 }
 
 .card-prodct {
     display: flex;
+    flex-direction: column;
     position: relative;
-    align-items: flex-end;
-    width: min(80%, 350px);
+    align-items: center;
+    justify-content: flex-end;
+    width: 300px;
     height: 400px;
     padding: 30px 25px;
     background: #fdfdf9;
@@ -317,15 +319,15 @@ header .user-shop a:hover{
     transform: translateY(-20px);
 }
 
-.card-prodct::after{
+.card-prodct::after {
     content: " ";
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     display: block;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, 
-    rgba(208, 195, 195, 0.5),rgba(129, 26,57, 1));
+    background: linear-gradient(to bottom, rgba(208, 195, 195, 0.5), rgba(129, 26, 57, 1));
     transition: all 0.5s;
     opacity: 0;
     border-radius: 40px;
@@ -405,11 +407,6 @@ header .user-shop a:hover{
 .precio-descuento {
     color: #fdfdf9; 
     font-weight: bold;
-}
-
-.botones-card{
-    display: grid;
-    grid-template-columns: repeat(2 1fr);
 }
 
 .editar-productos{
