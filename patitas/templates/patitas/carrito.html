@@ -35,17 +35,38 @@
     </div>
 
     <!-- Contenido del carrito -->
-    <h1>Carrito de Compras</h1>
-    {% if carrito_items %}
-        <ul>
-            {% for item in carrito_items %}
-                <li>{{ item.producto.nombre_prod }} - {{ item.cantidad }} x ${{ item.producto.precio }}</li>
-            {% endfor %}
-        </ul>
-        <p>Total: ${{ total }}</p>
-    {% else %}
-        <p>Tu carrito está vacío.</p>
-    {% endif %}
+    <div class="titulos-pag">
+        <h1>Carrito de Compras</h1>
+    </div>
+
+    <div class="carrito-container">
+        {% if carrito_items %}
+            <ul class="carrito-list">
+                {% for item in carrito_items %}
+                    <li class="carrito-item">
+                        <span class="producto-info">
+                            {{ item.producto.nombre_prod }} <br> {{ item.cantidad }} x ${{ item.producto.precio }}
+                        </span>
+                        <form action="{% url 'update_cart' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ item.producto.id }}">
+                            <input type="hidden" name="cantidad" value="{{ item.cantidad|add:1 }}">
+                            <button type="submit" class="btn btn-sm btn-success">+</button>
+                        </form>
+                        <form action="{% url 'update_cart' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ item.producto.id }}">
+                            <input type="hidden" name="cantidad" value="{{ item.cantidad|add:-1 }}">
+                            <button type="submit" class="btn btn-sm btn-danger">-</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p class="carrito-total">Total: ${{ total }}</p>
+        {% else %}
+            <p>Tu carrito está vacío.</p>
+        {% endif %}
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>

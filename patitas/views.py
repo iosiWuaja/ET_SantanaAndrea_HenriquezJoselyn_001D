@@ -160,3 +160,19 @@ def ver_carrito(request):
     total = sum(item.producto.precio * item.cantidad for item in carrito_items)
     return render(request, 'patitas/carrito.html', {'carrito_items': carrito_items, 'total': total})
 
+def update_cart(request):
+    if request.method == "POST":
+        producto_id = request.POST.get('producto_id')
+        cantidad = int(request.POST.get('cantidad'))
+        producto = Producto.objects.get(id=producto_id)
+        carrito_item = Carrito.objects.get(usuario=request.user, producto=producto)
+
+        if cantidad > 0:
+            carrito_item.cantidad = cantidad
+            carrito_item.save()
+        else:
+            carrito_item.delete()
+        return redirect('carrito')
+
+    else:
+        return redirect('index')
