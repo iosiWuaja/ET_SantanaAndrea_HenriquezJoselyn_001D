@@ -179,18 +179,3 @@ def update_cart(request):
 
     else:
         return redirect('index')
-
-def checkout(request):
-    if request.user.is_authenticated:
-        carrito_items = CarritoItem.objects.filter(carrito__usuario=request.user)
-        total = sum(item.producto.precio * item.cantidad for item in carrito_items)
-        context = {
-            'items': carrito_items,
-            'total': total,
-        }
-    else:
-        context = {
-            'items': [],
-            'total': 0,
-        }
-    return render(request, 'patitas/checkout.html', context)

@@ -22,7 +22,7 @@
 <body>
     <div class="cont-header">
         <header>
-            <a href={% url 'index' %} class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
+            <a href="index" class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
                 
             <!--BARRA NAVEGACION-->
             <nav class="navbar-header">
@@ -97,29 +97,27 @@
                     <ul>
                         <ul class="list-group">
                             {% for item in items %}
-                            <li class="list-group-item align-items-center">
+                            <ol class="list-group-item   align-items-center">
                                 <div>
                                     <span class="badge bg-secondary rounded-pill">{{ forloop.counter }}</span>
-            
-                                    <img src="{{ item.producto.imagen }}" alt="Imagen del producto" class="img-thumbnail" style="max-width: 100px;">
-            
+                        
+                                    <img src="{{ item.imagen_producto }}" alt="Imagen del producto" class="img-thumbnail" style="max-width: 100px;">
+                        
                                     <h5 class="mb-1 small">{{ item.producto.nombre_prod }}</h5>
                                     <p class="mb-1 small">Cantidad: {{ item.cantidad }}</p>
-                                    <p class="mb-1 small">Precio Unitario: ${{ item.producto.precio }}</p>
-                                    <p class="mb-1 small">Subtotal: ${{ item.producto.precio|mul:item.cantidad }}</p>
+                                    <p class="mb-1 small">Precio Unitario: {{ item.producto.precio }}</p>
+                                    <p class="mb-1 small">Subtotal: {{ item.subtotal }}</p>
                                 </div>
-                            </li>
+                            </ol>
                             {% endfor %}
                         </ul>
-                    </ul>
-                    <p class="total">Total: ${{ total }}</p>
+                    <p class="total">Total: {{ total }}</p>
                     <div class="modal-footer">
                         <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
                         <a href="{% url 'index' %}" class="btn btn-primary">Confirmar</a>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 
