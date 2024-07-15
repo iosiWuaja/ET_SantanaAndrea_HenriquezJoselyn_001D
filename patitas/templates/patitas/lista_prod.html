@@ -10,13 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <!--CSS-->
-    <link type='text/css' href='{% static "css/style.css"%}' rel='stylesheet'/>
+    <link type='text/css' href='{% static "css/style.css" %}' rel='stylesheet'/>
     <title>Lista de productos</title>
 </head>
 <body>
 
     <div class="logo-pat-prod">
-        <a href="index" class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
+        <a href="{% url 'index' %}" class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
     </div>
 
     <div class="titulos-pag">
@@ -33,37 +33,47 @@
         {% endif %}
     </div>
 
-        <table class="productos-tabla">
-            {% if productos %}
-            <thead>
+    <table class="productos-tabla">
+        {% if productos %}
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+             
+                <th>Stock</th>
+                <th>Imagen</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
                 <tr>
-                    <th>id</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Imagen</th>
-                    <th>Eliminar</th>
-                    <th>Modificar</th>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre_prod }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                
+                    
+            </td>
+                    <td>
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_prod }}" class="product-image">
+                        {% else %}
+                            <p>No hay imagen disponible</p>
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'productos_del' pk=producto.id %}" class="btn-eliminar">Eliminar</a></td>
+                    <td><a href="{% url 'productos_findEdit' pk=producto.id %}" class="btn-modificar">Modificar</a></td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for x in productos %}
-                    <tr>
-                        <td> {{ x.id }} </td>
-                        <td> {{ x.nombre_prod }} </td>
-                        <td> {{ x.descripcion }} </td>
-                        <td> {{ x.precio }} </td>
-                        <td> {{ x.stock }} </td>
-                        <td><img src="{{ x.imagen }}" alt=" {{ x.imagen}}" class="product-image"></td>
-                        <td> <a href="{% url 'productos_del' pk=x.id %}" class="btn-eliminar">eliminar </a></td>
-                        <td> <a href="{% url 'productos_findEdit' pk=x.id %}" class="btn-modificar">modificar </a></td>
-            
-                    </tr>
-                {% endfor %}
-            </tbody>
-            {% endif %}
-        </table>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
