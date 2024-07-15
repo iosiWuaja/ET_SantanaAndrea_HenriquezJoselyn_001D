@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto, Categoria, Carrito
+from .models import Producto, Categoria, Carrito, CarritoItem
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -179,3 +179,18 @@ def update_cart(request):
 
     else:
         return redirect('index')
+
+def checkout(request):
+    if request.user.is_authenticated:
+        carrito_items = CarritoItem.objects.filter(carrito__usuario=request.user)
+        total = sum(item.producto.precio * item.cantidad for item in carrito_items)
+        context = {
+            'items': carrito_items,
+            'total': total,
+        }
+    else:
+        context = {
+            'items': [],
+            'total': 0,
+        }
+    return render(request, 'patitas/checkout.html', context)
