@@ -133,11 +133,7 @@
     <div class="titulos-pag">
         <h1>Producto Populares</h1>
     </div>
-    {% if request.user.is_authenticated and request.user.username == "admin" %}
-    <div class="editar-productos">
-        <a href="crud">Editar Productos</a>
-    </div>
-{% endif %}
+
     <div class="cont-cards">
         {% for producto in productos %}
             <div class="card-prodct">
@@ -157,8 +153,11 @@
         {% endfor %}
     </div>
 
-        
-         
+    {% if request.user.is_authenticated and request.user.username == "admin" %}
+    <div class="editar-productos">
+        <a href="crud">Editar Productos</a>
+    </div> 
+    {% endif %}
 
 
     <!--Pie de pagina-->
