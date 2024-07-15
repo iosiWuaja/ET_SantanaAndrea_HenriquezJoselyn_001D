@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto, Categoria, Carrito, CarritoItem
+from .models import Producto, Categoria, Carrito
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST

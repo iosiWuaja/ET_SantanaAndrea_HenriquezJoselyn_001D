@@ -138,24 +138,24 @@
         <a href="crud">Editar Productos</a>
     </div>
 {% endif %}
-    <div class="cont-cards">
-        {% for producto in productos %}
-            <div class="card-prodct">
-                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_prod }}">
-                <p class="descuento">¡Este producto tiene descuento!</p>
-                <div class="info">
-                    <h1>{{ producto.nombre_prod }}</h1>
-                    <p>{{ producto.descripcion }}</p>
-                    <p class="precio-anterior"><del>$50.000</del></p>
-                    <p class="precio-descuento">${{ producto.precio }}</p>
-                    <form action="{% url 'agregar_al_carrito' producto.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="añadir-btn">Agregar al Carrito</button>
-                    </form>
-                </div>
+<div class="cont-cards">
+    {% for producto in productos %}
+        <div class="card-prodct">
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_prod }}">
+            <p class="descuento">¡Este producto tiene descuento!</p>
+            <div class="info">
+                <h1>{{ producto.nombre_prod }}</h1>
+                <p>{{ producto.descripcion }}</p>
+                <p class="precio-anterior"><del>$50.000</del></p>
+                <p class="precio-descuento">${{ producto.precio }}</p>
+                <form action="{% url 'agregar_al_carrito' producto.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="añadir-btn">Agregar al Carrito</button>
+                </form>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+</div>
 
         
          
