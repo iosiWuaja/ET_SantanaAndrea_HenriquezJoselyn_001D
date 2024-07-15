@@ -22,7 +22,7 @@
 <body>
     <div class="cont-header">
         <header>
-            <a href="index" class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
+            <a href={% url 'index' %} class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
                 
             <!--BARRA NAVEGACION-->
             <nav class="navbar-header">
@@ -185,7 +185,7 @@
 
             orderDetails.forEach(function(producto) {
                 var detalleProducto = document.createElement('p');
-                detalleProducto.textContent = `${producto.nombre} - $${(producto.precio * producto.cantidad).toFixed(2)} (${producto.cantidad} unidades)`;
+                detalleProducto.textContent = ${producto.nombre} - $${(producto.precio * producto.cantidad).toFixed(2)} (${producto.cantidad} unidades);
                 modalContent.appendChild(detalleProducto);
             });
         }
