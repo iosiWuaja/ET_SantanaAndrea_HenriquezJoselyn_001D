@@ -29,7 +29,6 @@
                 <a href="index">Inicio</a>
                 <a href="contacto">Contacto</a>
                 <a href="#">Nosotros</a>
-                <a href="usuario" class="fas fa-user"></a>
             </nav>
         </header>
     </div>
@@ -63,6 +62,7 @@
                 {% endfor %}
             </ul>
             <p class="carrito-total">Total: ${{ total }}</p>
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceder al pago</a>
         {% else %}
             <p>Tu carrito está vacío.</p>
         {% endif %}

@@ -24,12 +24,27 @@
         <header>
             <a href="index" class="logo_patitas_princ"><img src="{% static 'img/logo_patitas.png' %}" alt="patitas"></a>
                 
-            <!-- BARRA NAVEGACION -->
+            <!--BARRA NAVEGACION-->
             <nav class="navbar-header">
                 <a href="index">Inicio</a>
                 <a href="contacto">Contacto</a>
                 <a href="#">Nosotros</a>
-                <a href="usuario" class="fas fa-user"></a>
+                <ul class="usuario-nav">
+                    <li class="dropdown">
+                        <a href="#" class="fas fa-user dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="#">{{ user.username }}</a>
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button class="dropdown-item" type="submit">Cerrar Sesion</button>
+                                </form>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
             </nav>
         </header>
     </div>
@@ -76,18 +91,31 @@
 
             <div class="col-lg-6 mt-5">
                 <div class="box-element">
-                    <a href="carrito" class="btn btn-outline-dark">&#x2190; Volver al Carrito</a>
+                    <a href="{% url 'carrito' %}" class="btn btn-outline-dark">&#x2190; Volver al Carrito</a>
                     <hr>
-                    <h3>Resumen del Pedido</h3>
-                    <hr>
-                    <div class="cart-row">
-                        <div style="flex:2"><img class="row-image" src="{% static 'img/placeholder.png' %}"></div>
-                        <div style="flex:2"><p>Producto 1 </p></div>
-                        <div style="flex:1"><p>$0</p></div>
-                        <div style="flex:1"><p></p></div>
+                    <h2>Compra</h2>
+                    <ul>
+                        <ul class="list-group">
+                            {% for item in items %}
+                            <ol class="list-group-item   align-items-center">
+                                <div>
+                                    <span class="badge bg-secondary rounded-pill">{{ forloop.counter }}</span>
+                        
+                                    <img src="{{ item.imagen_producto }}" alt="Imagen del producto" class="img-thumbnail" style="max-width: 100px;">
+                        
+                                    <h5 class="mb-1 small">{{ item.producto.nombre_prod }}</h5>
+                                    <p class="mb-1 small">Cantidad: {{ item.cantidad }}</p>
+                                    <p class="mb-1 small">Precio Unitario: {{ item.producto.precio }}</p>
+                                    <p class="mb-1 small">Subtotal: {{ item.subtotal }}</p>
+                                </div>
+                            </ol>
+                            {% endfor %}
+                        </ul>
+                    <p class="total">Total: {{ total }}</p>
+                    <div class="modal-footer">
+                        <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{% url 'index' %}" class="btn btn-primary">Confirmar</a>
                     </div>
-                    <h5>Ítems: 2</h5>
-                    <h5>Total: $40</h5>
                 </div>
             </div>
         </div>

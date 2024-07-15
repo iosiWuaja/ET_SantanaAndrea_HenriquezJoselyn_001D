@@ -68,7 +68,7 @@ TEMPLATES = [
         },
     },
 ]
-LOGIN_REDIRECT_URL="menu"
+LOGIN_REDIRECT_URL="index"
 LOGOUT_REDIRECT_URL="index"
 
 WSGI_APPLICATION = 'TiendaPatitas.wsgi.application'

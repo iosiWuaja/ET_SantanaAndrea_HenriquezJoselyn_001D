@@ -415,7 +415,7 @@ header .user-shop a:hover{
     height: 40px;
     text-align: center;
     border-radius: 50px;
-    margin: 0 10px;
+    margin: 0 10px 20px;
 }
 
 .editar-productos a{
@@ -966,6 +966,7 @@ CONTACTO
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 30px;
+    margin-bottom: 50px;
 }
 
 .carrito-title {
@@ -1008,3 +1009,32 @@ CONTACTO
 }
 
 
+.modal-footer .btn{
+    background-color: #811a39;
+    border: 0;
+    margin: 10px;
+}
+
+.modal-footer .btn:hover{
+    background-color: #d5294d;
+}
+
+.box-element .btn{
+    border-radius: 5px;
+    background-color: #811a39;
+    color: #f9f9f9;
+    border: 0;
+}
+
+.box-element .btn:hover{
+    background-color: #d5294d;
+}
+
+.carrito-container .btn{
+    background-color: #811a39;
+    border: 0;
+}
+
+.carrito-container .btn:hover{
+    background-color: #d5294d;
+}

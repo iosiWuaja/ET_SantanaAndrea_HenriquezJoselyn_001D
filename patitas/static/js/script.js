@@ -180,7 +180,3 @@ $(document).ready(function() {
     });
 });
 
-
-/*CARRITO DE COMPRAS*/
-
-

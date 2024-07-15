@@ -143,22 +143,25 @@ def productosUpdate(request):
         return render(request, 'patitas/lista_prod.html', context)
 
 @require_POST
+@login_required
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
     carrito_item, created = Carrito.objects.get_or_create(usuario=request.user, producto=producto)
 
     if not created:
-        # Si el producto ya está en el carrito, incrementar la cantidad
         carrito_item.cantidad += 1
         carrito_item.save()
 
-    return redirect('carrito')
+    return redirect('index')
 
 
 def ver_carrito(request):
-    carrito_items = Carrito.objects.filter(usuario=request.user)
-    total = sum(item.producto.precio * item.cantidad for item in carrito_items)
-    return render(request, 'patitas/carrito.html', {'carrito_items': carrito_items, 'total': total})
+    if request.user.is_authenticated:
+        carrito_items = Carrito.objects.filter(usuario=request.user)
+        total = sum(item.producto.precio * item.cantidad for item in carrito_items)
+        return render(request, 'patitas/carrito.html', {'carrito_items': carrito_items, 'total': total})
+    else:
+        return redirect('login')
 
 def update_cart(request):
     if request.method == "POST":

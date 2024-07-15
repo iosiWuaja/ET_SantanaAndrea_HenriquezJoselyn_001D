@@ -134,111 +134,6 @@
         <h1>Producto Populares</h1>
     </div>
 
-    {% if request.user.is_authenticated and request.user.username == "admin" %}
-        <div class="editar-productos">
-            <a href="crud">Editar Productos</a>
-        </div>
-    {% endif %}
-
-        <div class="cont-cards">
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/peluche.png' %}" alt="producto1">
-                {% endif %}
-                <p class="descuento">¡22% de descuento!</p>
-                <div class="info">
-                    <h1>Peluche Cozie Marvin Alce</h1>
-                    <p>Juguete para perros con forma de peluche. Suave y tierno extra resistente.</p>
-                    <p class="precio-anterior"><del>$5.250</del></p>
-                    <p class="precio-descuento">$2.390</p>
-                    <button class="añadir-btn" data-id="1" data-nombre="Peluche Alce" data-precio="2390">Añadir al carro</button>
-                </div>
-            </div>
-
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/bandana.png' %}" alt="producto2">
-                {% endif %}
-                <p class="descuento">¡45% de descuento!</p>
-                <div class="info">
-                    <h1>Bandana Azul Una Patita De Cueca</h1>
-                    <p>Bandana con collar motivo dieciochero.</p>
-                    <p class="precio-anterior"><del>$4.590</del></p>
-                    <p class="precio-descuento">$1.990</p>
-                    <button class="añadir-btn" data-id="2" data-nombre="Bandana Azul" data-precio="1990">Añadir al carro</button>
-                </div>
-            </div>
-
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/rascador.png' %}" alt="producto3">
-                {% endif %}
-                <p class="descuento">¡15% de descuento!</p>
-                <div class="info">
-                    <h1>Cepillo Para Pared Masajeador Self Groomer</h1>
-                    <p>El Serf Groomer Catit Senses proporciona a su gato una fuente constante de placer al frotar y acicalar.</p>
-                    <p class="precio-anterior"><del>$9.990</del></p>
-                    <p class="precio-descuento">$7.990</p>
-                    <button class="añadir-btn" data-id="3" data-nombre="Cepillo Masajeador" data-precio="7990">Añadir al carro</button>
-                </div>
-            </div>
-
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/bol.png' %}" alt="No hay imagen disponible">
-                {% endif %}
-                <p class="descuento">¡30% de descuento!</p>
-                <div class="info">
-                    <h1>Bol</h1>
-                    <p>Comedero cerámico resistente 250ml.</p>
-                    <p class="precio-anterior"><del>$5.990</del></p>
-                    <p class="precio-descuento">$4.200</p>
-                    <button class="añadir-btn" data-id="4" data-nombre="Bol" data-precio="4200">Añadir al carro</button>
-                </div>
-            </div>
-
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/sweater.png' %}" alt="producto5">
-                {% endif %}
-                <p class="descuento">¡25% de descuento!</p>
-                <div class="info">
-                    <h1>GFPET Sweater Lavanda</h1>
-                    <p>Perfecto para mantener a su peludo calentito en el invierno. Cuello alto y ajuste perfecto.</p>
-                    <p class="precio-anterior"><del>$9.990</del></p>
-                    <p class="precio-descuento">$7.590</p>
-                    <button class="añadir-btn" data-id="5" data-nombre="Sweater Lavanda" data-precio="7590">Añadir al carro</button>
-                </div>
-            </div>
-
-            <div class="card-prodct">
-                {% if producto.foto %}
-                <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_prod }}">
-                {% else %}
-                <img src="{% static 'img/cama.png' %}" alt="producto6">
-                {% endif %}
-                <p class="descuento">¡15% de descuento!</p>
-                <div class="info">
-                    <h1>DreamWell Cama Rectangular</h1>
-                    <p>La cama DreamWell ofrece a su mascota un oasis de siesta cómodo y acogedor.</p>
-                    <p class="precio-anterior"><del>$29.990</del></p>
-                    <p class="precio-descuento">$16.445</p>
-                    <button class="añadir-btn" data-id="6" data-nombre="Cama rectangular" data-precio="16445">Añadir al carro</button>
-                </div>
-            </div>
-        </div>
-
-
     <div class="cont-cards">
         {% for x in productos %}
             <div class="card-prodct">
@@ -257,6 +152,12 @@
             </div>
         {% endfor %}
     </div>
+
+    {% if request.user.is_authenticated and request.user.username == "admin" %}
+        <div class="editar-productos">
+            <a href="crud">Editar Productos</a>
+        </div>
+    {% endif %}
         
          
 
